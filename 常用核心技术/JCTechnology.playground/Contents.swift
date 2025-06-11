@@ -9,6 +9,9 @@ import Foundation
 //    print(selectedSize == PaperSize(rawValue: selectedSize.rawValue)!)
 
 
+ 
+
+
 /**
  1.默认创建是串行队列
  let queque1 = DispatchQueue(label: "jc.test.log1",qos: .default)
@@ -41,6 +44,8 @@ queque2.async {
     }
 }
 */
+
+
 
 /**
  并发队列
@@ -126,6 +131,7 @@ group.notify(queue: DispatchQueue.main){
 }
 */
 
+
 /**
 2.信号量
  
@@ -157,6 +163,8 @@ group.notify(queue: DispatchQueue.main){
  }
 
  */
+
+
 
 /**
  3.栅栏函数(barrier)
@@ -208,6 +216,7 @@ operation.addExecutionBlock {
 operation.start()
 
 */
+
 
 /*
  两种操作方法：
