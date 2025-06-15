@@ -1,0 +1,64 @@
+<h2>HTML5新特性详解</h2>
+<p>HTML5作为最新的HTML标准，带来了许多令人兴奋的新特性和改进。本文将详细介绍其中一些最重要的功能。</p>
+
+<h3>1. 语义化标签</h3>
+<p>HTML5引入了一系列语义化标签，使文档结构更加清晰：</p>
+<ul>
+    <li><code>&lt;header&gt;</code> - 定义文档或节的页眉</li>
+    <li><code>&lt;nav&gt;</code> - 定义导航链接的部分</li>
+    <li><code>&lt;main&gt;</code> - 定义文档的主要内容</li>
+    <li><code>&lt;article&gt;</code> - 定义独立的内容</li>
+    <li><code>&lt;section&gt;</code> - 定义文档中的节</li>
+    <li><code>&lt;footer&gt;</code> - 定义文档或节的页脚</li>
+</ul>
+
+<h3>2. 表单增强</h3>
+<p>HTML5为表单添加了新的输入类型和属性：</p>
+<pre><code>&lt;input type="email" placeholder="请输入邮箱" required&gt;
+&lt;input type="url" placeholder="请输入网址"&gt;
+&lt;input type="date"&gt;
+&lt;input type="range" min="0" max="100"&gt;
+&lt;input type="color"&gt;</code></pre>
+
+<h3>3. 多媒体支持</h3>
+<p>HTML5原生支持音频和视频播放，无需依赖第三方插件：</p>
+<pre><code>&lt;video controls width="600"&gt;
+    &lt;source src="movie.mp4" type="video/mp4"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;</code></pre>
+
+<blockquote>
+    <p>HTML5的多媒体元素彻底改变了Web上的媒体消费方式，使开发者能够轻松地在网页中集成音频和视频内容。</p>
+</blockquote>
+
+<h3>4. Canvas绘图</h3>
+<p>Canvas元素允许通过JavaScript在网页上绘制图形：</p>
+<pre><code>&lt;canvas id="myCanvas" width="400" height="200"&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ff0000';
+    ctx.fillRect(50, 50, 150, 100);
+&lt;/script&gt;</code></pre>
+
+<h3>5. 本地存储</h3>
+<p>HTML5提供了localStorage和sessionStorage，允许在客户端存储数据：</p>
+<pre><code>// 存储数据
+localStorage.setItem('username', 'John Doe');
+
+// 获取数据
+const username = localStorage.getItem('username');
+
+// 删除数据
+localStorage.removeItem('username');
+
+// 清除所有数据
+localStorage.clear();</code></pre>
+
+<p>这些新特性使HTML5成为构建现代Web应用的强大工具，为开发者提供了更多可能性，同时改善了用户体验。</p>

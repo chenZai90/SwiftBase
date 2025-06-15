@@ -1,0 +1,144 @@
+<h2>JavaScript异步编程模式</h2>
+<p>JavaScript作为一门单线程语言，异步编程是其核心特性之一。本文将深入探讨JavaScript中的各种异步编程模式，帮助开发者更好地理解和应用这些模式解决实际问题。</p>
+
+<h3>1. 回调函数 (Callbacks)</h3>
+<p>回调函数是JavaScript中最基础的异步编程模式：</p>
+<pre><code>function fetchData(callback) {
+    setTimeout(() => {
+        const data = { id: 1, name: '示例数据' };
+        callback(null, data);
+    }, 1000);
+}
+
+fetchData((error, data) => {
+    if (error) {
+        console.error('获取数据失败:', error);
+        return;
+    }
+    console.log('获取数据成功:', data);
+});</code></pre>
+
+<p>回调模式的主要问题是可能导致"回调地狱"(Callback Hell)：</p>
+<pre><code>// 回调地狱示例
+asyncOperation1((err, result1) => {
+    if (err) { /* 处理错误 */ }
+    asyncOperation2(result1, (err, result2) => {
+        if (err) { /* 处理错误 */ }
+        asyncOperation3(result2, (err, result3) => {
+            if (err) { /* 处理错误 */ }
+            // 更多嵌套回调...
+        });
+    });
+});</code></pre>
+
+<h3>2. Promise</h3>
+<p>Promise是ES6引入的异步编程解决方案，解决了回调地狱问题：</p>
+<pre><code>function fetchData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            try {
+                const data = { id: 1, name: '示例数据' };
+                resolve(data);
+            } catch (error) {
+                reject(error);
+            }
+        }, 1000);
+    });
+}
+
+// 使用Promise
+fetchData()
+    .then(data => {
+        console.log('获取数据成功:', data);
+        return processData(data); // 可以返回另一个Promise
+    })
+    .then(processedData => {
+        console.log('数据处理完成:', processedData);
+    })
+    .catch(error => {
+        console.error('发生错误:', error);
+    })
+    .finally(() => {
+        console.log('操作完成');
+    });</code></pre>
+
+<h3>3. Async/Await</h3>
+<p>ES2017引入的async/await语法糖，使异步代码看起来像同步代码：</p>
+<pre><code>// 使用async/await
+async function getData() {
+    try {
+        const data = await fetchData();
+        console.log('获取数据成功:', data);
+        const processedData = await processData(data);
+        console.log('数据处理完成:', processedData);
+        return processedData;
+    } catch (error) {
+        console.error('发生错误:', error);
+        throw error; // 可以向上抛出错误
+    } finally {
+        console.log('操作完成');
+    }
+}
+
+// 调用async函数
+getData()
+    .then(result => console.log('最终结果:', result))
+    .catch(error => console.error('捕获到错误:', error));
+
+// 在async函数中调用
+async function main() {
+    try {
+        const result = await getData();
+        console.log('最终结果:', result);
+    } catch (error) {
+        console.error('捕获到错误:', error);
+    }
+}</code></pre>
+
+<blockquote>
+    <p>注意：async函数总是返回一个Promise，即使没有显式返回。使用await关键字只能在async函数内部。</p>
+</blockquote>
+
+<h3>4. Promise并发控制</h3>
+<p>处理多个并发异步操作：</p>
+<pre><code>// Promise.all - 全部成功才成功，一个失败则失败
+Promise.all([fetchData1(), fetchData2(), fetchData3()])
+    .then(results => {
+        console.log('所有操作成功:', results);
+    })
+    .catch(error => {
+        console.error('至少一个操作失败:', error);
+    });
+
+// Promise.allSettled - 等待所有操作完成，无论成功失败
+Promise.allSettled([fetchData1(), fetchData2(), fetchData3()])
+    .then(results => {
+        results.forEach(result => {
+            if (result.status === 'fulfilled') {
+                console.log('成功:', result.value);
+            } else {
+                console.log('失败:', result.reason);
+            }
+        });
+    });
+
+// Promise.race - 第一个完成的操作决定结果
+Promise.race([fetchData1(), timeoutPromise(5000)])
+    .then(result => {
+        console.log('第一个完成的操作结果:', result);
+    })
+    .catch(error => {
+        console.error('操作超时或失败:', error);
+    });</code></pre>
+
+<h3>5. 实际应用场景</h3>
+<p>不同异步模式的适用场景：</p>
+<ul>
+    <li><strong>简单异步操作</strong>：可使用基本回调或Promise</li>
+    <li><strong>复杂异步流程</strong>：推荐使用async/await，代码更清晰</li>
+    <li><strong>并发请求数据</strong>：使用Promise.all或Promise.allSettled</li>
+    <li><strong>超时控制</strong>：使用Promise.race配合超时Promise</li>
+    <li><strong>流式数据处理</strong>：考虑使用异步迭代器(Async Iterators)</li>
+</ul>
+
+<p>掌握这些异步编程模式对于开发高效、可靠的JavaScript应用至关重要。在实际开发中，应根据具体场景选择合适的异步模式，编写可读性高、易于维护的异步代码。</p>

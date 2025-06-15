@@ -1,0 +1,51 @@
+/* 主题变量定义 */
+:root {
+    /* 默认主题 */
+    --bg-color: #f8f9fa;
+    --text-color: #333333;
+    --text-secondary: #6c757d;
+    --accent-color: #007bff;
+    --navbar-bg: rgba(255, 255, 255, 0.9);
+    --card-bg-rgb: 255, 255, 255;
+    --card-border-rgb: 222, 226, 230;
+}
+
+/* 深色主题 */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e9ecef;
+    --text-secondary: #adb5bd;
+    --accent-color: #4dabf7;
+    --navbar-bg: rgba(33, 37, 41, 0.9);
+    --card-bg-rgb: 33, 37, 41;
+    --card-border-rgb: 52, 58, 64;
+}
+
+/* 日落主题 */
+[data-theme="sunset"] {
+    --bg-color: #fff5f0;
+    --text-color: #5d4037;
+    --text-secondary: #8d6e63;
+    --accent-color: #e64a19;
+    --navbar-bg: rgba(255, 245, 240, 0.9);
+    --card-bg-rgb: 255, 245, 240;
+    --card-border-rgb: 255, 224, 192;
+}
+
+/* 终端主题 */
+[data-theme="terminal"] {
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-color: #56d364;
+    --navbar-bg: rgba(17, 24, 39, 0.9);
+    --card-bg-rgb: 17, 24, 39;
+    --card-border-rgb: 48, 54, 61;
+}
+
+/* 主题切换过渡效果 */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

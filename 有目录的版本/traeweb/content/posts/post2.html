@@ -1,0 +1,108 @@
+<h2>CSS3动画与过渡效果实战</h2>
+<p>CSS3引入了强大的动画和过渡功能，使网页元素能够实现流畅的动态效果，而无需依赖JavaScript。本文将通过实例介绍如何使用这些功能提升用户体验。</p>
+
+<h3>1. 过渡效果 (Transitions)</h3>
+<p>过渡效果允许元素在状态变化时平滑过渡：</p>
+<pre><code>.box {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    transition: width 0.5s ease, height 0.5s ease, background 0.5s ease;
+}
+
+.box:hover {
+    width: 200px;
+    height: 200px;
+    background: red;
+}</code></pre>
+
+<p>transition属性可以指定以下参数：</p>
+<ul>
+    <li>要过渡的CSS属性</li>
+    <li>过渡持续时间</li>
+    <li>过渡 timing 函数 (ease, linear, ease-in, ease-out, ease-in-out)</li>
+    <li>延迟时间</li>
+</ul>
+
+<h3>2. 关键帧动画 (Keyframes)</h3>
+<p>关键帧动画提供了更精细的动画控制：</p>
+<pre><code>@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.button {
+    animation: pulse 2s infinite;
+}</code></pre>
+
+<p>动画属性可以控制动画的播放方式：</p>
+<pre><code>.element {
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-play-state: running;
+}
+
+/* 简写形式 */
+.element {
+    animation: pulse 2s ease-in-out 1s infinite alternate both running;
+}</code></pre>
+
+<h3>3. 变换 (Transforms)</h3>
+<p>变换允许您旋转、缩放、倾斜或平移元素：</p>
+<pre><code>.transform-example {
+    /* 旋转 */
+    transform: rotate(45deg);
+    /* 缩放 */
+    transform: scale(1.5);
+    /* 平移 */
+    transform: translate(50px, 100px);
+    /* 倾斜 */
+    transform: skew(20deg, 10deg);
+    /* 组合变换 */
+    transform: rotate(45deg) scale(1.5) translate(50px, 100px);
+}</code></pre>
+
+<blockquote>
+    <p>提示：使用transform-origin属性可以改变变换的原点位置，默认为元素中心。</p>
+</blockquote>
+
+<h3>4. 实战案例：悬停卡片效果</h3>
+<pre><code>.card {
+    transition: all 0.3s ease;
+    transform-origin: center bottom;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    transition: all 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}</code></pre>
+
+<h3>5. 性能优化</h3>
+<p>为确保动画流畅，应遵循以下最佳实践：</p>
+<ul>
+    <li>优先使用transform和opacity属性进行动画</li>
+    <li>避免动画触发重排(reflow)和重绘(repaint)</li>
+    <li>使用will-change提示浏览器优化</li>
+    <li>考虑使用硬件加速：transform: translateZ(0)</li>
+</ul>
+
+<pre><code>.optimized-animation {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}</code></pre>
+
+<p>通过合理运用CSS3动画和过渡效果，可以为用户创造更加生动和引人入胜的网页体验，同时保持良好的性能。</p>

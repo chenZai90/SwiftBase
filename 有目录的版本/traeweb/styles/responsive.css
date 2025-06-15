@@ -1,0 +1,74 @@
+/* 响应式设计 - 平板设备 */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .post-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .typewriter-container {
+        font-size: 1.5rem;
+    }
+}
+
+/* 响应式设计 - 移动设备 */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .theme-switcher {
+        margin-top: 1rem;
+    }
+
+    .post-list {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .typewriter-container {
+        font-size: 1.2rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* 文章内容响应式样式 */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .post-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .post-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .post-content blockquote {
+        padding: 0.5rem 1rem;
+        margin: 1rem 0;
+    }
+}
